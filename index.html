@@ -267,7 +267,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Elements
             const playBtn = document.getElementById('play');
             const prevBtn = document.getElementById('prev');
             const nextBtn = document.getElementById('next');
@@ -277,7 +276,6 @@
             const title = document.getElementById('title');
             const artist = document.getElementById('artist');
 
-            // Video data
             const videos = [
                 {
                     title: 'Lofi Study',
@@ -305,11 +303,9 @@
                 }
             ];
 
-            // State
             let isPlaying = true;
             let videoIndex = 0;
 
-            // Functions
             function playVideo() {
                 isPlaying = true;
                 playBtn.innerHTML = '<i>⏸</i>';
@@ -339,7 +335,6 @@
             }
 
             function loadVideo(index) {
-                // Show loading animation
                 loading.style.display = 'block';
                 videoPlayer.style.opacity = '0.3';
                 
@@ -347,23 +342,19 @@
                 title.textContent = video.title;
                 artist.textContent = video.artist;
                 
-                // Update active playlist item
                 playlistItems.forEach(item => {
                     item.classList.remove('active');
                 });
                 playlistItems[index].classList.add('active');
                 
-                // Change the video with a short delay (for animation effect)
                 setTimeout(() => {
                     videoPlayer.src = `https://www.youtube.com/embed/${video.id}?autoplay=1`;
                     
-                    // Hide animation when video loads
                     videoPlayer.onload = function() {
                         loading.style.display = 'none';
                         videoPlayer.style.opacity = '1';
                     };
                     
-                    // Hide animation if loading takes too long
                     setTimeout(() => {
                         loading.style.display = 'none';
                         videoPlayer.style.opacity = '1';
@@ -371,7 +362,6 @@
                 }, 500);
             }
 
-            // Event Listeners
             playBtn.addEventListener('click', () => {
                 if (isPlaying) {
                     pauseVideo();
@@ -389,9 +379,6 @@
                     loadVideo(videoIndex);
                 });
             });
-
-            // Initialize
-            // Initial load is handled by the HTML src attribute
         });
     </script>
 </body>
